@@ -3,22 +3,40 @@
     <head>
         <meta charset="UTF-8">
         <title>Create PC Game</title>
+        <link rel="stylesheet" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+        <script src="/webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div th:text="${createMessage}"></div>
-        <form th:method="post" th:action="@{/pc-games}" th:object="${pcGameForm}">
-            <div>Tytuł:</div>
-            <input type="text" th:field="*{title}" id="title"/>
-            <div>Producent:</div>
-            <input type="text" th:field="*{producer}" id="producer"/>
-            <div>Gatunek</div>
-            <input type="text" th:field="*{genre}" id="genre"/>
-            <div>Dozwolone od lat:</div>
-            <input type="text" th:field="*{minimumAge}" id="minimumAge"/>
-            <div>isAAA:</div>
-            <input type="checkbox" th:field="*{isAAA}" id="isAAA">
-            <div></div>
-            <input type="submit" value="Create"/>
-        </form>
+        <div class="container">
+            <h2 th:text="${createMessage}"></h2>
+            <form th:method="post" th:action="@{/pc-games}" th:object="${pcGameForm}">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Tytuł</label>
+                    <input type="text" th:field="*{title}" class="form-control" id="title">
+                </div>
+                <div class="mb-3">
+                    <label for="producer" class="form-label">Producent</label>
+                    <input type="text" th:field="*{producer}" class="form-control" id="producer">
+                </div>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Gatunek</label>
+                    <input type="text" th:field="*{genre}" class="form-control" id="genre">
+                </div>
+                <div class="mb-3">
+                    <label for="minimumAge" class="form-label">Dozwolone od lat:</label>
+                    <input type="text" th:field="*{minimumAge}" th:class="${#fields.hasErrors('minimumAge')} ? 'form-control is-invalid' : 'form-control'" id="minimumAge" aria-describedby="validationMinimumAgeFeedback">
+                    <div id="validationMinimumAgeFeedback"
+                         class="invalid-feedback"
+                         th:if="${#fields.hasErrors('minimumAge')}"
+                         th:text="${#fields.errors('minimumAge')}">
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" th:field="*{isAAA}" class="form-check-input" id="isAAA">
+                    <label class="form-check-label" for="isAAA">is AAA?</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
     </body>
 </html>

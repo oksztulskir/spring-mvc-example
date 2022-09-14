@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>PC Game Info</title>
+        <link rel="stylesheet" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+        <script src="/webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-
+        <div class="container">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    PC Game Info
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><div>Tytuł: <span th:text="${pcGame.title}"></span></div></li>
+                    <li class="list-group-item"><div>Producent: <span th:text="${pcGame.producer}"></span></div></li>
+                    <li class="list-group-item"><div>Gatunek: <span th:text="${pcGame.genre}"></span></div></li>
+                    <li class="list-group-item"><div>Dozwolone od lat: <span th:text="${pcGame.minimumAge}"></span></div></li>
+                    <li class="list-group-item"><div>game is <span th:if="${!pcGame.isAAA}">not </span>AAA</div></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>
