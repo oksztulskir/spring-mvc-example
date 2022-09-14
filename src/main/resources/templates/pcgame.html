@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create PC Game</title>
+    </head>
+    <body>
+        <div th:text="${createMessage}"></div>
+        <form th:method="post" th:action="@{/pc-games}" th:object="${pcGameForm}">
+            <div>Tytuł:</div>
+            <input type="text" th:field="*{title}" id="title"/>
+            <div>Producent:</div>
+            <input type="text" th:field="*{producer}" id="producer"/>
+            <div>Gatunek</div>
+            <input type="text" th:field="*{genre}" id="genre"/>
+            <div>Dozwolone od lat:</div>
+            <input type="text" th:field="*{minimumAge}" id="minimumAge"/>
+            <div>isAAA:</div>
+            <input type="checkbox" th:field="*{isAAA}" id="isAAA">
+            <div></div>
+            <input type="submit" value="Create"/>
+        </form>
+    </body>
+</html>
